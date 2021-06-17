@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="person.clp.stationeryback.mapper.StationeryMapper">
+    <select id="getStationery" resultType="person.clp.stationeryback.entity.Stationery">
+        select * from stationery
+    </select>
+
+    <!--更新文具数量-->
+    <update id="updateStationery" parameterType="String" >
+        update stationery set ${type}=${count} where ${type}=${type}
+    </update>
+
+
+</mapper>

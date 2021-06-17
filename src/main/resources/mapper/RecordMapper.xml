@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="person.clp.stationeryback.mapper.RecordMapper">
+    <insert id="insert" parameterType="person.clp.stationeryback.entity.Record" >
+        insert into
+        record(type,userId,count,way,time)
+        values(#{type},#{userId},#{count},#{way},#{time})
+    </insert>
+
+    <select id="getRecordByUserId" parameterType="java.lang.Integer" resultType="person.clp.stationeryback.entity.Record">
+        select * from record where userId=#{userId} and way=#{way}
+    </select>
+</mapper>

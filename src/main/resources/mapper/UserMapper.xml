@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="person.clp.stationeryback.mapper.UserMapper">
+    <select id="selectByName" parameterType="java.lang.String" resultType="person.clp.stationeryback.entity.User">
+        select * from user where username = #{username}
+    </select>
+
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultType="person.clp.stationeryback.entity.User">
+        select * from user where userId = #{userId}
+    </select>
+
+    <insert id="insert" parameterType="person.clp.stationeryback.entity.User" >
+        insert into
+        user(username,password,academe,realname,studentNumber,groupId,faceId,faceFeature)
+        values(#{username},#{password},#{academe},#{realname},#{studentNumber},#{groupId},#{faceId},#{faceFeature})
+    </insert>
+
+    <resultMap id="userFace2" type="person.clp.stationeryback.entity.FaceUserInfo">
+        <id column="id" property="id" javaType="java.lang.Integer"/>
+        <result column="username" property="username" javaType="String"/>
+        <result column="password" property="password" javaType="String"/>
+        <result column="academe" property="academe" javaType="String"/>
+        <result column="realname" property="realname" javaType="String"/>
+        <result column="faceid" property="faceId" javaType="String"/>
+        <result column="groupid" property="groupId" javaType="java.lang.Integer"/>
+        <result column="studentNumber" property="studentNumber" javaType="String"/>
+        <result column="facefeature" property="faceFeature"/>
+    </resultMap>
+
+
+    <select id="getUserFaceInfoByGroupId" resultType="person.clp.stationeryback.entity.FaceUserInfo" resultMap="userFace2" parameterType="java.lang.Integer">
+        select faceid,username,facefeature from user where groupid=#{groupId}
+    </select>
+
+</mapper>
